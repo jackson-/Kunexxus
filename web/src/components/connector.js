@@ -4,7 +4,9 @@ import * as actionsCreator from '../actions/actionsCreator';
 import App from './App';
 
 function mapStateToProps(state){
-	return{}
+	return {
+    users: state.users
+  }
 }
 
 function mapDispatchToProps(dispatch){

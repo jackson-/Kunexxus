@@ -8,6 +8,7 @@ import Connector from './connector';
 import HomePage from './homepage';
 import Work from './work';
 import Contact from './contact';
+import Register from './Register';
 
 class RoutePaths extends Component{
   render(){
@@ -18,6 +19,7 @@ class RoutePaths extends Component{
             <IndexRoute component={HomePage}></IndexRoute>
             <Route path="/work" component={Work}></Route>
             <Route path="/contact" component={Contact}></Route>
+            <Route path="/register" component={Register}></Route>
             {/*
             Additional routes here. example:
             <Route path="/users" component={AllUsers}></Route>
