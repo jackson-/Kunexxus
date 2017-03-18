@@ -3,12 +3,18 @@ import React, {Component} from 'react';
 class SignupForm extends Component{
   constructor(props){
     super(props);
+
+    const funcs = ["signup"];
+    funcs.forEach( f => this[f] = this[f].bind(this));
   }
 
   signup(e){
     e.preventDefault();
+
+    const {form, password, email} = this;
+
     console.log(`Signing up ${this.email.value}...`);
-    this.props.signup({email: this.email.value, password: this.password.value});
+    this.props.signup(this.email.value, this.password.value);
   }
 
   render(){
@@ -18,13 +24,13 @@ class SignupForm extends Component{
         <div className="row">
           <formgroup className="col-lg-12">
             <label htmlFor="email">E-mail: </label>
-            <input ref={input => this.email = input} type="text" name="email" placeholder="Enter your e-mail" />
+            <input ref={input => this.email = input} type="text" name="email" placeholder="Enter your e-mail" required />
           </formgroup>
         </div>
         <div className="row">
           <formgroup className="col-lg-12">
             <label htmlFor="password">Password: </label>
-            <input ref={input => this.password = input} type="password" name="password" placeholder="Enter your password" />
+            <input ref={input => this.password = input} type="password" name="password" placeholder="Enter your password" required />
           </formgroup>
         </div>
         <div className="row">

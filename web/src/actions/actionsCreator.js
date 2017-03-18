@@ -13,9 +13,10 @@ export function login(email, password){
   };
 }
 
-export function signup(users){
+export function signup(email, password){
   return {
     type: 'SIGNUP',
-    users
+    email,
+    password
   }
 }
