@@ -3,6 +3,7 @@ const session = require('express-session');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const cors = require('cors');
 
 // Set up the express app
 const app = express();
@@ -16,6 +17,8 @@ app.use(session({
 		secure: false
 	}
 }));
+
+app.use(cors());
 
 // Log requests to the console.
 app.use(logger('dev'));
