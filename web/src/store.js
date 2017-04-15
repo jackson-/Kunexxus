@@ -1,14 +1,18 @@
-import {createStore} from 'redux';
-import {syncHistoryWithStore} from 'react-router-redux';
-import {browserHistory} from 'react-router';
-import rootReducer from './reducers/index';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
+import { promiseMiddleware } from './middleware';
+import auth from './reducers/auth';
+import common from './reducers/common';
+import home from './reducers/home';
 
-const defaultState = {
-  users: []
-};
 
-const store = createStore(rootReducer, defaultState);
+const reducer = combineReducers({
+  auth,
+  common,
+  home
+});
 
-export const history = syncHistoryWithStore(browserHistory, store);
+const middleware = applyMiddleware(promiseMiddleware);
+
+const store = createStore(reducer, compose(middleware, window.devToolsExtension ? window.devToolsExtension() : f => f));
 
 export default store;

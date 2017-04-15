@@ -1,9 +1,23 @@
-import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
-import RoutePaths from './components/routepaths';
-import './index.css';
+import React from 'react';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-ReactDOM.render(
-  <RoutePaths />,
-  document.getElementById('root')
-);
+import App from './App';
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+// import ProjectsHome from './components/ProjectsHome';
+import store from './store';
+
+ReactDOM.render((
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="login" component={Login} />
+        <Route path="register" component={Register} />
+      </Route>
+    </Router>
+  </Provider>
+), document.getElementById('root'));
