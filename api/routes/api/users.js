@@ -50,12 +50,13 @@ router.post('/users/login', function(req, res, next){
     console.log("ERR", err);
     if(err){ return next(err); }
 
-    if(user){
+    if(user !== false){
       console.log("USER",user)
       user.token = user.generateJWT();
       console.log("TOKEN",user.token)
       return res.json({user: user.toAuthJSON()});
     } else {
+      console.log("INFO", info)
       return res.status(422).json(info);
     }
   })(req, res, next);

@@ -3,7 +3,8 @@ import { promiseMiddleware } from './middleware';
 import auth from './reducers/auth';
 import common from './reducers/common';
 import home from './reducers/home';
-
+import createSagaMiddleware from 'redux-saga'
+import sagas from './sagas';
 
 const reducer = combineReducers({
   auth,
@@ -11,8 +12,12 @@ const reducer = combineReducers({
   home
 });
 
-const middleware = applyMiddleware(promiseMiddleware);
+const sagaMiddleware = createSagaMiddleware()
+
+const middleware = applyMiddleware(promiseMiddleware, sagaMiddleware);
 
 const store = createStore(reducer, compose(middleware, window.devToolsExtension ? window.devToolsExtension() : f => f));
+
+sagaMiddleware.run(sagas)
 
 export default store;

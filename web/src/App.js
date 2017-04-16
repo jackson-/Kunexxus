@@ -7,7 +7,6 @@ import './App.css';
 class App extends Component {
 
   componentWillMount(){
-    console.log("TOKEN", localStorage.getItem('token'))
     if(!localStorage.getItem('token')){
       this.context.router.push('/login')
     }

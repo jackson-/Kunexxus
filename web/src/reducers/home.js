@@ -1,4 +1,3 @@
-import agent from '../agent';
 
 const defaultState = {
   projects: null

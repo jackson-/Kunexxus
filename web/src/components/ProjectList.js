@@ -1,7 +1,6 @@
 import React from 'react';
 import ProjectPreview from './ProjectPreview';
 const ProjectList = props => {
-  console.log("RENDER PROJECTS", props)
   if (!props.projects) {
     return (
       <div className="project-preview">Loading...</div>
@@ -15,7 +14,6 @@ const ProjectList = props => {
       </div>
     );
   }
-  debugger;
   return (
     <div>
       {

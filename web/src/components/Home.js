@@ -1,6 +1,6 @@
 
-import Banner from './Banner';
-import MainView from './MainView';
+import ProjectList from './ProjectList';
+import { Link } from 'react-router';
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store'
@@ -25,15 +25,15 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log("RENDER HOME", this.props)
+
     return (
       <div className="home-page">
-
-        <Banner appName={this.props.appName} />
-
         <div className="container page">
+          <Link to='/projects/create' className="navbar-brand">
+            Create New Project
+          </Link>
           <div className="row">
-            <MainView projects={this.props.projects}/>
+            <ProjectList projects={this.props.projects}/>
           </div>
         </div>
 

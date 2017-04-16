@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import ListErrors from './ListErrors';
 import React from 'react';
+import agent from '../agent';
 
 import { connect } from 'react-redux';
 
@@ -11,8 +12,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', value }),
   onChangePassword: value =>
     dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'password', value }),
-  onSubmit: (email, password, router) =>
+  onSubmit: (email, password, router) => {
     dispatch({ type: 'LOGIN', payload: {email:email, password:password}, router:router })
+  }
 });
 
 class Login extends React.Component {

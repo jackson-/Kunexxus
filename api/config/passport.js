@@ -9,8 +9,8 @@ passport.use(new LocalStrategy({
 }, function(email, password, done) {
   console.log(User.find({}), "USER GINFER")
   User.findOne({email: email}).then(function(user){
-    console.log("USER HERE", user)
     if(!user || !user.validPassword(password)){
+      console.log("FAILED")
       return done(null, false, {errors: {'email or password': 'is invalid'}});
     }
 

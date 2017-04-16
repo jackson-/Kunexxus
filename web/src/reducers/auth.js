@@ -3,18 +3,26 @@ import agent from '../agent';
 export default (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':
-      agent.Auth.login(action.payload.email, action.payload.password).then((results) => {
-        localStorage.setItem('token', results.user.token)
-        localStorage.setItem('email', results.user.email)
-        localStorage.setItem('timestamp', Date.now())
-        action.router.push('/')
+        return {
+          ...state,
+          inProgress: true,
+        };
+    case 'LOGIN_SUCCEEDED':
+      localStorage.setItem('token', action.user.token);
+      localStorage.setItem('email', action.user.email);
+      localStorage.setItem('timestamp', Date.now());
+      return {
+        ...state,
+        inProgress: false,
+        user:action.user
+      }
+    case 'LOGIN_FAILED':
+        debugger;
         return {
           ...state,
           inProgress: false,
-          errors: results.error ? results.errors : null
-        };
-      })
-
+          error:action.message
+        }
     case 'REGISTER':
       localStorage.setItem('token', action.payload.user.token)
       localStorage.setItem('email', action.payload.user.email)

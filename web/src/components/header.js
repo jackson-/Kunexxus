@@ -9,18 +9,19 @@ const mapStateToProps = state => ({
 class Header extends React.Component {
   render() {
     let token = localStorage.getItem('token')
+    const address = token ? "/" : "/login";
     return (
       <nav className="navbar navbar-light">
         <div className="container">
 
-          <Link to="/" className="navbar-brand">
+          <Link to={address} className="navbar-brand">
             {this.props.appName.toLowerCase()}
           </Link>
           <ul className="nav navbar-nav pull-xs-right">
           { token  &&
               <li className="nav-item">
                 <Link to="/" className="nav-link">
-                  Home
+                  Projects
                 </Link>
               </li>
           }
