@@ -50,16 +50,23 @@ router.get('/', auth.optional, function(req, res, next) {
 
 router.post('/', function(req, res, next){
   console.log("CREATING PROJECT", req.body)
-  // var user = new User();
-  // user.email = req.body.user.email;
-  // user.setPassword(req.body.user.password);
-  //
-  // user.save().then(function(){
-  //   var r = {user: user.toAuthJSON()}
-  //   console.log("FINISHED SAVING USER", r)
-  //   return res.json(r);
-  // }).catch(next);
-  // res.json({status:200})
+  var project = new Project();
+  project.title = req.body.title;
+  project.description = req.body.description;
+  var user = null;
+  User.find({email:req.body.email}).then(results => {
+    console.log("DATA", results[0])
+    user = results.data;
+  })
+  project.author = user;
+
+
+  project.save().then(function(){
+    var r = {project: project.toJSONFor(user)}
+    console.log("FINISHED SAVING project", r)
+    return res.json(r);
+  }).catch(next);
+  res.json({status:200})
 });
 
 module.exports = router;

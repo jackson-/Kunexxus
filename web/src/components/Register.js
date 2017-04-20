@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import ListErrors from './ListErrors';
 import React from 'react';
-import agent from '../agent';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ ...state.auth });
@@ -12,7 +11,7 @@ const mapDispatchToProps = dispatch => ({
   onChangePassword: value =>
     dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'password', value }),
   onSubmit: (email, password) =>
-    dispatch({ type: 'REGISTER', payload: agent.Auth.register(email, password) })
+    dispatch({ type: 'REGISTER', payload: {email:email, password:password} })
 });
 
 class Register extends React.Component {
@@ -29,7 +28,10 @@ class Register extends React.Component {
   render() {
     const email = this.props.email;
     const password = this.props.password;
-    console.log("EP",email, password)
+    const router = this.props.router;
+    if(this.props.user){
+      router.push('/')
+    }
     return (
       <div className="auth-page">
         <div className="container page">

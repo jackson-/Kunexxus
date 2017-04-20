@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectPreview from './ProjectPreview';
 const ProjectList = props => {
+  console.log("PROJECT LISTS PROKECTS", props.projects)
   if (!props.projects) {
     return (
       <div className="project-preview">Loading...</div>

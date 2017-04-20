@@ -16,7 +16,9 @@ const requests = {
 
 const Projects = {
   all: page =>
-    requests.get(`/projects`)
+    requests.get(`/projects`),
+  create_project: (title, description, email) =>
+    requests.post(`/projects`, {title, description, email}),
 };
 
 const Auth = {

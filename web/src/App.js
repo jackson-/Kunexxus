@@ -3,6 +3,15 @@ import {connect} from 'react-redux';
 import Header from './components/Header';
 import './App.css';
 
+const mapStateToProps = state => ({
+  user:state.auth.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  setUser: (user) => {
+    dispatch({ type: 'CREATE_PROJECT', payload: {user:user}})
+  }
+});
 
 class App extends Component {
 
@@ -35,4 +44,4 @@ App.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default connect(null, () => ({}))(App);
+export default connect(mapStateToProps, () => ({}))(App);

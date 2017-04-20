@@ -3,13 +3,15 @@ import { promiseMiddleware } from './middleware';
 import auth from './reducers/auth';
 import common from './reducers/common';
 import home from './reducers/home';
+import projects from './reducers/projects';
 import createSagaMiddleware from 'redux-saga'
 import sagas from './sagas';
 
 const reducer = combineReducers({
   auth,
   common,
-  home
+  home,
+  projects
 });
 
 const sagaMiddleware = createSagaMiddleware()
